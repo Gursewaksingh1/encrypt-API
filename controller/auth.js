@@ -11,7 +11,7 @@ function encrypt(text) {
     encryptedData: encrypted.toString('hex') };
 }
 function decryptData(encryptedData) {
-    const decipher = crypto.createDecipheriv(algorithm, key, Buffer.from(encryptedData.iv, 'hex'));
+    const decipher = crypto.createDecipheriv(algorithm, key, iv, 'hex'));
     let decrypted = decipher.update(encryptedData.encryptedData, 'hex', 'utf8');
     decrypted += decipher.final('utf8');
     return decrypted;
