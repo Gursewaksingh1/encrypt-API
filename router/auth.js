@@ -7,5 +7,5 @@ const authController = require("../controller/auth");
 
 // auth router
 router.post("/", authController.test);
-router.post("/as", authController.decrypt);
+router.post("/decrypt", authController.decrypt);
 module.exports = router;
