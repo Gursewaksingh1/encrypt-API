@@ -1,7 +1,7 @@
 const crypto = require('crypto');
 const algorithm ='aes-256-cbc';
-const key = crypto.randomBytes(32);
-const iv = crypto.randomBytes(16);
+const key = "12345678901234567890123456789012";
+const iv = "1111111111111111";
 function encrypt(text) {
  let cipher = crypto.createCipheriv(
       'aes-256-cbc', Buffer.from(key), iv);
