@@ -1,21 +1,23 @@
-const crypto = require('crypto');
-const algorithm ='aes-256-cbc';
+const crypto = require("crypto");
+const algorithm = "aes-256-cbc";
 const key = "12345678901234567890123456789012";
 const iv = "1111111111111111";
 function encrypt(text) {
- let cipher = crypto.createCipheriv(
-      'aes-256-cbc', Buffer.from(key), iv);
- let encrypted = cipher.update(text);
- encrypted = Buffer.concat([encrypted, cipher.final()]);
- return { iv: iv.toString('hex'),
-    encryptedData: encrypted.toString('hex') };
+  let cipher = crypto.createCipheriv("aes-256-cbc", Buffer.from(key), iv);
+  let encrypted = cipher.update(text);
+  encrypted = Buffer.concat([encrypted, cipher.final()]);
+  return { iv: iv.toString("hex"), encryptedData: encrypted.toString("hex") };
 }
 function decryptData(encryptedData) {
-    const decipher = crypto.createDecipheriv(algorithm, key, iv, 'hex'));
-    let decrypted = decipher.update(encryptedData.encryptedData, 'hex', 'utf8');
-    decrypted += decipher.final('utf8');
-    return decrypted;
-  }
+  const decipher = crypto.createDecipheriv(
+    algorithm,
+    key,
+    iv
+  );
+  let decrypted = decipher.update(encryptedData.encryptedData, "hex", "utf8");
+  decrypted += decipher.final("utf8");
+  return decrypted;
+}
 exports.test = async (req, res, next) => {
     let { data }  =req.body;
     try {
